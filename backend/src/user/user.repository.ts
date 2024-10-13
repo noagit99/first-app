@@ -20,7 +20,7 @@ export class UserRepository {
   }
 
   async createUser(userData: any) {
-    const validatedUser = UserSchema.parse({ ...userData}); // Validate user data and ensure id is included
+    const validatedUser = UserSchema.parse({ ...userData }); // Validate user data and ensure id is included
     const result = await this.dbService.dbClient
       .insert(usersTable)
       .values(validatedUser)
@@ -56,4 +56,3 @@ export class UserRepository {
     return result[0] || null; // Return the first user or null
   }
 }
-
