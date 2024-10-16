@@ -2,7 +2,7 @@ export interface User {
     id: string;
     username: string;
     email: string;
-    // Include other user properties as needed
+    password: string;
   }
   
   export interface LoginData {
@@ -14,7 +14,6 @@ export interface User {
     name: string;
     email: string;
     password: string;
-    // Add other required fields as necessary
   }
   
   export interface UserResponse {
