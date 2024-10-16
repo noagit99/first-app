@@ -17,3 +17,8 @@ export interface User {
     // Add other required fields as necessary
   }
   
+  export interface UserResponse {
+    status: number;
+    user: User;
+  }
+  

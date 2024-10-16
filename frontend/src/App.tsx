@@ -1,6 +1,6 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import TestUser from './components/TestUser'; 
+import UserComponent from './components/UserComponent';
 import * as styles from './styles/styles.css';
 
 // Create a client for React Query
@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <h1 className={styles.header}>Welcome to Vite + React + TypeScript!</h1>
         <p>This is a simple example using Vanilla Extract for CSS-in-TypeScript.</p>
         <button className={styles.button}>Click Me!</button>
-        <TestUser/>
+        <UserComponent/>
       </div>
     </QueryClientProvider>
   );
