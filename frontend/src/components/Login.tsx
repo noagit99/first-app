@@ -52,7 +52,7 @@ const Login: React.FC = () => {
         <button type="submit" disabled={loading} className={styles.button}>
           {loading ? 'Loading...' : 'Login'}
         </button>
-        {error && <p className={styles.error}>{error}</p>}
+        {error && <p className={styles.error}>{"invalid credentials"}</p>}
       </form>
     </div>
   );
