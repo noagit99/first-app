@@ -5,80 +5,94 @@ globalStyle('html, body', {
   margin: 0,
   padding: 0,
   fontFamily: 'Arial, sans-serif',
-  backgroundColor: '#ffe6e6', // Light red background
+  colorScheme: 'light',
+  backgroundColor: '#f3e8ff', // Light purple background
   color: '#333',
   justifyContent: 'center',
-  alignItems: 'flex-start', // Change to 'center' if needed
+  alignItems: 'flex-start',
   minHeight: '100vh',
+});
+
+// Input styles
+globalStyle('input', {
+  padding: '0.75rem',
+  borderRadius: '8px',
+  border: '1px solid #d1c4e9', // Light purple border
+  marginBottom: '1rem',
+  width: '100%',
+  height: '40px',
+  fontSize: '1rem',
+  backgroundColor: 'rgba(241, 239, 247, 0.9)', // Slightly transparent light purple background
+  color: '#333', // Dark text color
+  transition: 'border-color 0.3s, box-shadow 0.3s',
+  outline: 'none', // Remove default outline
+  caretColor: '#6a5acd', // Cursor color (the caret)
+});
+
+// Focus state
+globalStyle('input:focus', {
+  borderColor: '#6a5acd', // Change border color to a darker purple
+  boxShadow: '0 0 5px rgba(106, 90, 205, 0.5)', // Subtle purple shadow effect
+});
+
+// Placeholder styles
+globalStyle('input::placeholder', {
+  color: '#a89fc5', // Light gray for placeholder
+  opacity: 1, // Ensure full opacity for better visibility
+});
+
+// Placeholder focus state
+globalStyle('input:focus::placeholder', {
+  color: '#c2b2e1', // Change placeholder color on focus for better visibility
+});
+
+// Global styles for form
+globalStyle('form', {
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '2rem',
+  justifyContent: 'center',
 });
 
 // Container styles
 export const container = style({
-  padding: '2rem', // Use rem for padding
-  width: '90%',
-  maxWidth: '800px',
-  margin: '0 auto', // Center the container
-  backgroundColor: '#ffffff', // White background for contrast
+  padding: '2rem',
+  maxWidth: '400px',
+  backgroundColor: '#ffffff',
   borderRadius: '12px',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-  textAlign: 'center', // Centering text within the container
-  display: 'flex', // Using flexbox for alignment
-  flexDirection: 'column', // Align items vertically
-  alignItems: 'center', // Center items horizontally
-  transition: 'transform 0.3s',
-  overflow: 'auto',
-
-  // Hover effect
-  ':hover': {
-    transform: 'scale(1.02)',
-  },
+  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', // Lighter shadow for softer effect
+  textAlign: 'center',
+  justifyContent: 'center',
 });
 
 // Header styles
 export const header = style({
-  fontSize: '2.5rem',
+  fontSize: '2rem',
   marginBottom: '1rem',
-  color: '#c0392b', // Dark red for the header
-});
-
-// Paragraph styles
-export const paragraph = style({
-  fontSize: '1.2rem',
-  marginBottom: '1rem',
-  lineHeight: '1.5',
-  textAlign: 'center', // Center text in the paragraph
+  color: '#6a5acd', // Dark purple for the header
 });
 
 // Button styles
 export const button = style({
-  padding: '0.75rem 1.5rem', // Use rem for padding
+  padding: '1rem 1.5rem',
+  margin: '1rem 0',
   fontSize: '1rem',
   color: '#fff',
-  backgroundColor: '#e74c3c', // Bright red for the button
+  backgroundColor: '#7b68ee', // Bright purple for the button
   border: 'none',
   borderRadius: '8px',
   cursor: 'pointer',
+  justifyContent: 'center',
   transition: 'background-color 0.3s, transform 0.3s',
 
-  // Hover effects
   ':hover': {
-    backgroundColor: '#c0392b', // Darker red on hover
+    backgroundColor: '#6a5acd', // Darker purple on hover
     transform: 'scale(1.05)',
   },
 });
 
-// Media Queries for responsiveness
-globalStyle('@media (max-width: 600px)', {
-  [header]: {
-    fontSize: '2rem', // Smaller font size for headers
-  },
-  [paragraph]: {
-    fontSize: '1rem', // Smaller font size for paragraphs
-  },
-  [container]: {
-    padding: '1rem', // Less padding on smaller screens
-  },
-  [button]: {
-    padding: '0.5rem 1rem', // Smaller button padding
-  },
+// Error message styles
+export const error = style({
+  color: '#e74c3c', // Keep the error message in red
+  marginTop: '1rem',
 });
