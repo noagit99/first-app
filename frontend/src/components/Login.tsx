@@ -1,28 +1,45 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useLogin } from '../hooks/useUsers'; // Adjust the path as necessary
+import { LoginData } from '../types/index.ts'; // Adjust the path as necessary
 import * as styles from '../styles/styles.css';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const loginMutation = useLogin();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
+    setError(''); // Clear previous error
+
+    const loginData: LoginData = { username, password };
 
     try {
-      const response = await axios.post('http://localhost:3000/user/login', { username, password });
-      alert(response.data.message); // For demo purposes, replace with a toast notification
-      navigate('/home');
+      // Attempt login
+      const response = await loginMutation.mutateAsync(loginData);
+
+      // Only set the token and navigate if login is successful
+      if (response && response.access_token) {
+        localStorage.setItem('token', String(response.access_token)); // Store the token
+        console.log(response.access_token);
+        alert('Login successful'); // Show success message
+        navigate('/home'); // Redirect to home on success
+      }
     } catch (err: any) {
-      setError(err.response?.data?.error || 'An error occurred');
-    } finally {
-      setLoading(false);
+      console.error('Login error:', err); // Log the error for debugging
+
+      // Check the structure of the error returned
+      if (err.response) {
+        // If error has a response from the server
+        setError(err.response.data.message || 'Login failed'); // Set error message
+      } else {
+        setError('An unexpected error occurred'); // Handle unexpected errors
+      }
+      
+      alert('Login failed: ' + (err.response?.data?.message || 'Invalid credentials')); // Show alert
     }
   };
 
@@ -47,12 +64,13 @@ const Login: React.FC = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
-        <button type="submit" disabled={loading} className={styles.button}>
-          {loading ? 'Loading...' : 'Login'}
+        <button type="submit" disabled={loginMutation.status === 'pending'} className={styles.button}>
+          {loginMutation.status === 'pending' ? 'Loading...' : 'Login'}
         </button>
-        {error && <p className={styles.error}>{"invalid credentials"}</p>}
+        {error && <p className={styles.error}>{error}</p>} {/* Display error message */}
       </form>
     </div>
   );

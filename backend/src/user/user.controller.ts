@@ -8,11 +8,14 @@ import {
   Delete,
   Patch,
 } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
+import { User } from './user.schema';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService,  private authService: AuthService ) {}
 
   @Get(':id') // GET user by ID
   async getUserById(@Param('id') id: string) {
@@ -104,17 +107,18 @@ export class UserController {
     }
   }
 
-  @Post('login')
-  async login(@Body() loginData: { username: string; password: string }) {
-    const user = await this.userService.login(
-      loginData.username,
-      loginData.password,
-    );
-    console.log(user);
-
-    if (!user) {
-      throw new Error('Invalid credentials'); // Handle invalid credentials
-    }
-    return { message: 'Login successful', user }; // Return success message and user data
+@Post('login')
+async login(@Body() loginData: { username: string; password: string }) {
+  try {
+    const { access_token } = await this.authService.login(loginData.username, loginData.password);
+    return { message: 'Login successful', access_token }; // Return success message and access token
+  } catch (error) {
+    console.error('Error during login:', error);
+    throw new HttpException({
+      status: HttpStatus.UNAUTHORIZED,
+      message: 'Invalid credentials', // Custom message for the client
+      error: error.message,
+    }, HttpStatus.UNAUTHORIZED); // Throw an exception with 401 status
   }
+}
 }

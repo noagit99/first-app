@@ -1,4 +1,5 @@
 export interface User {
+    access_token(arg0: string, access_token: any): unknown;
     id: string;
     username: string;
     email: string;
