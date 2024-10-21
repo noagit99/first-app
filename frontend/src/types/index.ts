@@ -21,4 +21,15 @@ export interface User {
     status: number;
     user: User;
   }
+
+  export interface IExpense {
+    id?: string;
+    title: string;
+    amount: number;
+    date: Date;   
+  }
+  
+  export type Expense = IExpense;
+
+  export type ExpenseList = Expense[];
   
