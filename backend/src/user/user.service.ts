@@ -77,5 +77,17 @@ export class UserService {
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     return isPasswordValid ? user : null; // Return user if valid, otherwise null
+  } catch (error) {
+    console.error('Error in login service:', error);
+    throw new Error('Failed to login user');
+  }
+
+  async getUserByUsername(username: string): Promise<any> {
+    try {
+      return await this.userRepository.getUserByUsername(username);
+    } catch (error: any) {
+      console.error('Error in getUserByUsername service:', error);
+      throw new Error('Failed to fetch user by username');
+    }
   }
 }
