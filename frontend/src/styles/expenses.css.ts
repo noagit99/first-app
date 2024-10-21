@@ -68,11 +68,10 @@ export const expenseItem = style({
   display: 'flex',
   justifyContent: 'space-between',
   padding: '10px',
-  borderBottom: '1px solid #eee',
-  backgroundColor: '#e1bee7', // Light purple for each item
-  transition: 'background-color 0.3s',
-  ':hover': {
-    backgroundColor: '#d1c4e9', // Slightly darker on hover
+  borderBottom: '1px solid #ddd', // Line between expense items
+  backgroundColor: '#fff', // Optional: to make it stand out
+  ':last-child': {
+    borderBottom: 'none', // Remove line for the last item
   },
 });
 
