@@ -7,7 +7,6 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   define: {
-    root: __dirname,
     'process.env': {
       API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms', // Fallback to your port-forwarding link
     }
