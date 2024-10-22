@@ -16,6 +16,9 @@ export default defineConfig({
       target: 'esnext',
       emptyOutDir: true,
       rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html')
+        },
       }
     }
   }
