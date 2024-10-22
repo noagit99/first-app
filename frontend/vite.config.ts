@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   define: {
     'process.env': {
-      API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms:3000', // Fallback to your port-forwarding link
+      API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms', // Fallback to your port-forwarding link
     },
   },
 });
