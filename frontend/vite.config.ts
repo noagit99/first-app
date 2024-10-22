@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   define: {
     'process.env': {
-        API_URL: process.env.VITE_API_URL,
-    },
+      VITE_API_URL: 'https://njjbwcjd-3000.euw.devtunnels.ms/:3000', // Replace with your actual link
+  },
   },
 });
