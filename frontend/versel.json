@@ -1,4 +1,11 @@
 {
+    "version": 2,
+    "builds": [
+      {
+        "src": "dist/index.html",
+        "use": "@vercel/static"
+      }
+    ],
     "rewrites": [
       {
         "source": "/(.*)",
@@ -16,12 +23,6 @@
             "value": "no-cache"
           }
         ]
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
       }
     ]
   }
