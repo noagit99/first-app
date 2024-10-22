@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   define: {
     'process.env': {
-      API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms', // Fallback to your port-forwarding link
+      API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms', // Fallback URL
     },
   },
   build: {
@@ -16,18 +16,8 @@ export default defineConfig({
     target: 'esnext',
     emptyOutDir: true,
     rollupOptions: {
-      input: resolve(__dirname, 'index.html'), // Ensure index.html is included in the build
-    },
-  },
-  server: {
-    watch: {
-      usePolling: true,
-    },
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+      input: {
+        main: resolve(__dirname, 'index.html'),
       },
     },
   },
