@@ -7,17 +7,27 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   define: {
     'process.env': {
-      API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms', // Fallback URL
+      API_URL: process.env.VITE_API_URL || 'https://njjbwcjd-3000.euw.devtunnels.ms', // Fallback to your port-forwarding link
     },
   },
   build: {
     sourcemap: true,
-    outDir: resolve(__dirname, 'dist'), // Ensure the build output goes to 'dist'
+    outDir: resolve(__dirname, 'dist'),
     target: 'esnext',
-    emptyOutDir: true, // Clear the output directory before each build
+    emptyOutDir: true,
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'), // Main HTML file
+      input: resolve(__dirname, 'index.html'), // Ensure index.html is included in the build
+    },
+  },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
