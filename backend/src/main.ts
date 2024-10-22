@@ -7,8 +7,7 @@ config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
-// Define allowed origins
+// Define allowed origins with regex
 const allowedOrigins = [
   'http://localhost:5173',
   /https:\/\/.*\.vercel\.app/
@@ -17,7 +16,9 @@ const allowedOrigins = [
 // Enable CORS
 app.enableCors({
   origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin || allowedOrigins.some(pattern => 
+          typeof pattern === 'string' ? pattern === origin : pattern.test(origin)
+      )) {
           callback(null, origin);
       } else {
           callback(new Error('Not allowed by CORS'));
