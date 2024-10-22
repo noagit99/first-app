@@ -1,19 +1,8 @@
 {
     "rewrites": [
-      { "source": "/(.*)", "destination": "/" }
-    ],
-    "cleanUrls": true,
-    "outputDirectory": "dist",
-    "trailingSlash": false,
-    "headers": [
       {
         "source": "/(.*)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache"
-          }
-        ]
+        "destination": "/"
       }
     ]
   }
