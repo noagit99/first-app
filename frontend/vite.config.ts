@@ -13,7 +13,6 @@ export default defineConfig({
   build: {
     sourcemap: true,
     outDir: resolve(__dirname, 'dist'),
-    target: 'esnext',
     emptyOutDir: true,
     rollupOptions: {
       input: {
