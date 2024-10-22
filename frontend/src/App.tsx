@@ -15,9 +15,9 @@ const App: React.FC = () => {
       <Router>
         <div className={styles.container}>
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/user" element={<UserComponent />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/user" element={<UserComponent />} />
           </Routes>
         </div>
       </Router>
