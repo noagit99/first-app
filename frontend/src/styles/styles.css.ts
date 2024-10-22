@@ -57,7 +57,6 @@ globalStyle('form', {
 // Container styles
 export const container = style({
   padding: '2rem',
-  maxWidth: '400px',
   backgroundColor: '#ffffff',
   borderRadius: '12px',
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', // Lighter shadow for softer effect
@@ -96,3 +95,5 @@ export const error = style({
   color: '#e74c3c', // Keep the error message in red
   marginTop: '1rem',
 });
+
+

@@ -15,15 +15,16 @@ export const useApiQuery = <TResponseType>(path: string, enabled: boolean = true
 };
 
 // Generic API mutation hook
-export const useApiMutation = <TData, TResponseType>(path: string, method: 'POST' | 'PATCH' | 'DELETE') => {
+export const useApiMutation = <TData, TResponseType>(path: string, method: 'POST' | 'PATCH' | 'DELETE' | 'PUT') => {
   const queryClient = useQueryClient();
 
   return useMutation<TResponseType, Error, TData>({
     mutationFn: async (data: TData) => {
+      const url = method === 'DELETE' ? `${path}/${data}` : path; // Append the ID for DELETE
       const response = await api.request({
-        url: path,
+        url,
         method,
-        data,
+        data: method === 'DELETE' ? undefined : data, // Only send data for non-DELETE methods
       });
       return response.data;
     },
