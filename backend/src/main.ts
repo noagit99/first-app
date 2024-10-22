@@ -11,7 +11,7 @@ async function bootstrap() {
 // Define allowed origins
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://first-app-*.vercel.app'
+  /https:\/\/.*\.vercel\.app/
 ];
 
 // Enable CORS
